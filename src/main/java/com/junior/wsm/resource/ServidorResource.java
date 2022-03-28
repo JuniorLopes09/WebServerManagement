@@ -2,6 +2,7 @@ package com.junior.wsm.resource;
 
 import com.junior.wsm.domain.RespostaHTTP;
 import com.junior.wsm.domain.Servidor;
+import com.junior.wsm.dto.ServidorDto;
 import com.junior.wsm.enumatarion.Status;
 import com.junior.wsm.service.implementation.ServidorServiceImpl;
 import com.sun.javafx.collections.MappingChange;
@@ -54,7 +55,8 @@ public class ServidorResource {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<RespostaHTTP> pingServidor(@RequestBody @Valid Servidor servidor){
+    public ResponseEntity<RespostaHTTP> pingServidor(@RequestBody @Valid ServidorDto servidorDto){
+        Servidor servidor = servidorDto.toServidor();
         return ResponseEntity.ok(
                 RespostaHTTP.builder()
                         .timeStamp(now())
